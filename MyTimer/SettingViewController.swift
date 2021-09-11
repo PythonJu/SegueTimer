@@ -10,7 +10,7 @@ import UIKit
 class SettingViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     @IBOutlet weak var timeSettingPicker: UIPickerView!
     
-    private let settings = UserDefaults.standard
+    private let UserDefSettings = UserDefaults.standard
     private var settingArray: [Int] {
         var arr:[Int] = []
 
@@ -28,7 +28,7 @@ class SettingViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         timeSettingPicker.dataSource = self
         
         for row in 0..<settingArray.count {
-            if settingArray[row] == settings.integer(forKey: settingKey) {
+            if settingArray[row] == UserDefSettings.integer(forKey: settingKey) {
                 timeSettingPicker.selectRow(row,
                                             inComponent: 0,
                                             animated: true)
@@ -55,7 +55,7 @@ class SettingViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
 
-        settings.setValue(settingArray[row], forKey: settingKey)
+        UserDefSettings.setValue(settingArray[row], forKey: settingKey)
     }
     
 }
